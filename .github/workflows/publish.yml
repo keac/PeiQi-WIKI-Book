@@ -16,8 +16,6 @@ jobs:
       uses: actions/setup-node@v3
       with: 
           node-version: '16.0.0'
-      env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -31,7 +29,7 @@ jobs:
     - run: yarn add vuepress-theme-antdocs -d
     - run: yarn install
     - run: export NODE_OPTIONS=--openssl-legacy-provider
-    - run: export NODE_OPTIONS="--max_old_space_size=4096"
+    - run: export NODE_OPTIONS="--max_old_space_size=8193"
     # - run: sed -i 's/GITHUB_ClientId/${{ secrets.CLIENTID }}/g' docs/.vuepress/config.js
     # - run: sed -i 's/GITHUB_ClientSecret/${{ secrets.CLIENTSECRET }}/g' docs/.vuepress/config.js
     - run: yarn docs:build
